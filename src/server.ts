@@ -1,16 +1,18 @@
 import express from "express"
 import dotenv from "dotenv"
 import { testDbconnection } from "./config/database";
+import authRoutes from "./routes/authRoutes"
 
 
 dotenv.config()
 
 const app = express()
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 const startServer = async () => {
     await testDbconnection();
     app.use(express.json());
+    app.use('/api/users', authRoutes)
 
     app.listen(PORT, () => {
         console.log(`server is running on http://localhost:${PORT}`);
