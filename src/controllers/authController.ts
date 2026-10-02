@@ -18,6 +18,7 @@ export const register = async (req: Request, res: Response) => {
             .status(201)
             .json({ message: "user registered successfully", userId: user.id });
     } catch (error) {
+        console.log(error)
         res.status(500).json({ message: "Error registering the user" });
     }
 };
@@ -29,22 +30,31 @@ export const login = async (req: Request, res: Response) => {
 
     try {
         const user = await userService.findUserByEmail(email);
-        if (!user) {
-            return res.status(409).json({ message: "Invalid email" });
-        }
-        const isMatch = await bcrypt.compare(password, user.password)
-        if (!isMatch) {
-            return res.status(401).json({ message: "Invalid password" })
-        }
+        // if (!user) {
+        //     return res.status(409).json({ message: "Invalid email" });
+        // }
+        // const isMatch = await bcrypt.compare(password, user.)
+        // if (!isMatch) {
+        //     return res.status(401).json({ message: "Invalid password" })
+        // }
 
-        const payLoad = { userId: user.id, email: user.email }
-        const token = jwt.sign(payLoad, process.env.JWT_SECRET!, {
-            expiresIn: "1h",
-        });
-        res.status(200).json({ message: "Login Successful", token })
+        // const payLoad = { userId: user.id, email: user.email }
+        // const token = jwt.sign(payLoad, process.env.JWT_SECRET!, {
+        //     expiresIn: "1h",
+        // });
+        res.status(200).json({ message: "Login Successful" })
     } catch (error) {
         res.status(401).json({ message: "Invalid Password" })
 
     }
 };
 
+export const getAllUsers = async (req: Request, res: Response) => {
+    try {
+        const users = await userService.findAllUsers();
+        res.status(200).json({ users });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error fetching users" });
+    }
+};
