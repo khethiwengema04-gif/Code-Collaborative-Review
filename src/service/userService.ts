@@ -9,10 +9,12 @@ export const findUserByEmail = async (email: string): Promise<User | null> => {
 };
 
 export const createUser = async (userData: new_user): Promise<User> => {
-    const salt = await bcrypt.genSalt(10);
     const { email, password, name, role } = userData
+    const salt = await bcrypt.genSalt(10);
+
+
     const { rows } = await query(
-        "INSERT INTO users (email, password,name,role) VALUES ($1,$2) RETURNING*",
+        "INSERT INTO users (email, password, name, role) VALUES ($1,$2,$3,$4) RETURNING*",
         [email, password, name, role]
     );
     return rows[0];
@@ -48,3 +50,4 @@ export const deleteUser = async (id: number): Promise<User | null> => {
     );
     return rows[0] || null;
 };
+
