@@ -5,7 +5,7 @@ import {
     getSubmissionByIdService,
     updateSubmissionStatusService,
     deleteSubmissionService
-} from "../service/submittionService";
+} from "../service/submissionService";
 
 
 // CREATE SUBMISSION
