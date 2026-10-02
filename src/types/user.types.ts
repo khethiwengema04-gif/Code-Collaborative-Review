@@ -9,3 +9,11 @@ export interface User {
 }
 
 export type new_user = Omit<User, 'id'>
+
+export interface Project {
+    id: number,
+    title: string,
+    description: string,
+    user_id: number,
+    assigned_member: number
+}
