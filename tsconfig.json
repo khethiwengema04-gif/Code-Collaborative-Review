@@ -6,5 +6,11 @@
     "outDir": "./dist",
     "esModuleInterop": true,
     "strict": true
-  }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "files": [
+    "src/types/express.d.ts"
+  ]
 }
