@@ -5,6 +5,8 @@ import authRoutes from "./routes/authRoutes";
 import projectRoutes from "./routes/projectRoutes";
 import submissionRoutes from "./routes/submissionRoutes";
 import commentRoutes from "./routes/commentRoutes";
+import reviewRoutes from "./routes/reviewRoutes";
+
 
 dotenv.config();
 
@@ -17,6 +19,8 @@ app.use('/api/users', authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use("/api/submissions", submissionRoutes);
 app.use("/api/comments", commentRoutes);
+app.use("/api/reviews", reviewRoutes);
+
 const startServer = async () => {
     try {
         await testDbconnection();

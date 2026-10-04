@@ -17,3 +17,29 @@ export interface Project {
     user_id: number,
     assigned_member: number
 }
+export interface Submission {
+    id: number,
+    project_id: number,
+    submitted_by: number,
+    title: string,
+    code: string,
+    status: string,
+    created_at: Date
+}
+
+export interface Comment {
+    id: number,
+    submission_id: number,
+    user_id: number,
+    comment_text: string,
+    created_at: Date,
+    line_number: number
+}
+
+export interface Review {
+    id: number,
+    submission_id: number,
+    reviewer_id: number,
+    action: string,
+    comment: string
+}
