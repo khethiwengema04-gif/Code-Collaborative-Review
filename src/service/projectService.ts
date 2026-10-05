@@ -1,4 +1,5 @@
 import { query } from "../config/database";
+import { Project } from "../types/user.types";
 
 // Create a project
 export const createProjectService = async (
@@ -17,25 +18,27 @@ export const createProjectService = async (
     return result.rows[0];
 };
 
-
-// Get all projects
-export const getProjectsService = async () => {
-    const result = await query(
-        `SELECT
-            p.id,
-            p.name,
-            p.description,
-            p.created_by,
-            p.created_at,
-            u.name AS creator_name
-         FROM projects p
-         JOIN users u
-         ON p.created_by = u.id
-         ORDER BY p.created_at DESC`
+export const findAllProject = async (): Promise<Project[]> => {
+    const { rows } = await query(
+        `SELECT *
+         FROM projects ORDER BY created_at DESC`
     );
 
-    return result.rows;
+    return rows;
 };
+
+// Get all projects
+// export const getProjectsService = async () => {
+//     const result = await query(
+//         `SELECT p.id,p.name,p.description,p.created_by,u.name AS creator_name
+//          FROM projects p
+//          JOIN users u
+//          ON p.created_by = u.id
+//          ORDER BY p.created_at DESC`
+//     );
+
+//     return result.rows;
+// };
 
 
 // Check if a project exists
