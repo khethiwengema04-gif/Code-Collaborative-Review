@@ -9,7 +9,6 @@ export const createReviewService = async (
         RETURNING *`,
         [submissionId, reviewerId, action, comment]
     );
-
     return result.rows[0];
 };
 
@@ -23,7 +22,6 @@ export const updateSubmissionStatusForReview = async (submissionId: number, stat
          RETURNING *`,
         [status, submissionId]
     );
-
     return result.rows[0] || null;
 };
 

@@ -36,3 +36,10 @@ export interface Comment {
     line_number: number
 }
 
+export interface Review {
+    id: number,
+    submission_id: number,
+    reviewer_id: number,
+    action: string,
+    comment: string
+}
